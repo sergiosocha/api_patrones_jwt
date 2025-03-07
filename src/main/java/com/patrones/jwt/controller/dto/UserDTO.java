@@ -1,4 +1,6 @@
 package com.patrones.jwt.controller.dto;
 
-public class UserDTO {
+public record UserDTO(String username, String password, String rol) {
+
+
 }
