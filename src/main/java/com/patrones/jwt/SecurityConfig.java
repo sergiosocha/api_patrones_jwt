@@ -14,14 +14,13 @@ public class SecurityConfig  {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        http
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/api/public").permitAll() // Endpoint público
-                        .requestMatchers("/api/admin").hasRole("ADMIN") // Solo para Admin
-                        .requestMatchers("/api/user").hasRole("USER")   // Solo para User
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/api/public").permitAll()
+                        .requestMatchers("/api/admin").hasRole("ADMIN")
+                        .requestMatchers("/api/user").hasRole("USER")
                         .anyRequest().authenticated()
                 )
-                // Configuracion JWT
+                // Configuracion JWT pendiente
                 .httpBasic();
 
         return http.build();
