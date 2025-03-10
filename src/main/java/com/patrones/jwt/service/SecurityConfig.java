@@ -50,13 +50,6 @@ public class SecurityConfig  {
         return new InMemoryUserDetailsManager(user, admin);
     }
 
-    public String generateToken(String username){
-        Map<String, Object> claims = new HashMap<>();
-        claims.put("sub", username);
 
-        return Jwts.builder()
-                .claims(claims)
-                .compact();
-    }
 
 }
