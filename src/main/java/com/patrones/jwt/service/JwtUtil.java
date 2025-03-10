@@ -2,17 +2,16 @@ package com.patrones.jwt.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import lombok.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-
+import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Value;
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.Date;
 
+@Component
 public class JwtUtil {
 
     @Value("${jwt.secret}")
@@ -50,7 +49,8 @@ public class JwtUtil {
     public Claims extractAllClaims(String token) {
 
         SecretKey key = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
-        return Jwts.parserBuilder().setSigninKey(key).build().parseClaimsJwt(token).getBody();
+        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody();
+
     }
 
     public String extractUsername(String token) {
