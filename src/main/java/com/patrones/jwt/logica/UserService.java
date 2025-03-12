@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
@@ -26,4 +27,14 @@ public class UserService implements UserDetailsService{
 
         return new User(user.getUsername(), user.getPassword(), Collections.singleton(user.getRole()));
     }
+
+    @Transactional
+    public void saveUser(UserORM user) {
+        userJPA.save(user);
+    }
+
+    public boolean existsByUsername(String username) {
+        return userJPA.findByUsername(username).isPresent();
+    }
+
 }
