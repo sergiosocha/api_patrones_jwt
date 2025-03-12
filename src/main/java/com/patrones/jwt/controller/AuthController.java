@@ -1,9 +1,10 @@
-package com.patrones.jwt.service;
+package com.patrones.jwt.controller;
 
 
 import com.patrones.jwt.controller.dto.UserDTO;
 import com.patrones.jwt.db.orm.UserORM;
 import com.patrones.jwt.logica.UserService;
+import com.patrones.jwt.service.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 
